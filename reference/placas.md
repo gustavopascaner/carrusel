@@ -29,8 +29,14 @@ derecha, en cualquier placa).
 
 ## `portada`
 `titulo`, `remate` (serif, color de acento), `etiqueta` (píldora arriba), `icono` (ícono grande arriba; saca el aro
-decorativo), `sin_deco` (`true` para no poner el aro). Opcional, solo si el usuario dio una foto para este carrusel:
-`foto` (ruta, relativa a la carpeta del JSON) y `foto_pos` (CSS `object-position`, por defecto `50% 0%`).
+decorativo), `sin_deco` (`true` para no poner el aro). Opcional: `foto` (ruta, relativa a la carpeta del JSON; la
+del usuario o una de `fotos/` elegida con `scripts/fotos.py`) y `foto_pos` (CSS `object-position`, por defecto `50% 0%`).
+
+## `foto`
+Una foto que ilustra el tema, con texto corto. `foto` (obligatoria), `foto_pos` (por defecto `50% 40%`), `modo`
+(`"sangre"`, por defecto: a pantalla completa con degradé y texto abajo; `"marco"`: foto enmarcada arriba y texto abajo
+sobre el fondo de la marca), `alto_foto` (solo `marco`, px, por defecto 700), `kicker`, `titulo`, `remate`, `tam`,
+`tam_remate`. Título de ≤ 8 palabras: la foto cuenta el resto.
 
 ## `lista`
 `kicker`, `titulo`, `remate`, `icono` (`x`, `check`, `num` o un ícono de Lucide), `items` (3–4, ≤ 14 palabras; cada

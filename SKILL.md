@@ -1,6 +1,6 @@
 ---
 name: carrusel
-description: Convierte cualquier guion (o idea) en un carrusel de Instagram de 2 a 10 placas de 1080×1350 diseñadas con la marca de un cliente o de Gus (paleta, tipografías y estilo de ~/.config/motion/brands/<slug>/brand.json). Sintetiza el texto, define una dirección de arte, diseña las placas con tipografía, íconos, datos grandes, comparaciones, grillas y diagramas a medida (no necesita fotos), las renderiza en PNG con Chrome, las revisa, escribe el texto de la publicación y, con el OK, las programa con /publicar. Usar cuando el usuario escribe /carrusel con un guion, archivo o tema, o pide "armá un carrusel con este guion", "pasá este guion a carrusel para @cuenta", "hacé un carrusel con la marca de <cliente>".
+description: Convierte cualquier guion (o idea) en un carrusel de Instagram de 2 a 10 placas de 1080×1350 diseñadas con la marca de un cliente o de Gus (paleta, tipografías y estilo de ~/.config/motion/brands/<slug>/brand.json). Sintetiza el texto, define una dirección de arte, diseña las placas con tipografía, íconos, datos grandes, comparaciones, grillas y diagramas a medida, busca en Pixabay una foto que ilustre el tema (o usa las que da el usuario), las renderiza en PNG con Chrome, las revisa, escribe el texto de la publicación y, con el OK, las programa con /publicar. Usar cuando el usuario escribe /carrusel con un guion, archivo o tema, o pide "armá un carrusel con este guion", "pasá este guion a carrusel para @cuenta", "hacé un carrusel con la marca de <cliente>".
 ---
 
 # /carrusel — cualquier guion → carrusel de Instagram con la marca
@@ -9,15 +9,16 @@ Hablarle al usuario (Gus o alguien de su equipo) en español rioplatense (voseo)
 
 **Principio:** cualquier guion tiene que poder terminar en un carrusel atractivo, **sin depender de fotos**. El diseño
 sale de la marca (colores y tipografías) más las herramientas de esta skill: jerarquía tipográfica fuerte, íconos,
-números grandes, comparaciones, grillas, pasos y placas libres en HTML/SVG para diagramas a medida. Las fotos son un
-extra opcional: solo si el usuario las da para ese carrusel.
+números grandes, comparaciones, grillas, pasos y placas libres en HTML/SVG para diagramas a medida. Encima de eso,
+**1 o 2 fotos reales que ilustren el tema** (de Pixabay o las que dé el usuario) le dan vida: el carrusel nunca depende
+de ellas, pero se buscan siempre (ver 3.6).
 
 ## 0 · Qué hace falta
 - **Guion**: texto pegado, archivo (`.txt`, `.md`, `.docx`) o una idea para desarrollar.
 - **Marca**: slug de `~/.config/motion/brands/<slug>/` (en Windows `%USERPROFILE%\.config\motion\brands\`). Si no la
   dicen, deducirla de la cuenta o del cliente nombrado (`ls` de la carpeta). Si hay dudas, preguntar con 2–5 opciones.
   Si no existe: se crea con `/marca`.
-- **Fotos o imágenes**: solo si el usuario las pasa para este carrusel. No buscar fotos por iniciativa propia.
+- **Fotos**: si el usuario pasa fotos, van esas. Si no, buscarlas en Pixabay (paso 3.6), salvo que diga «sin foto».
 - Requisitos: Python 3 (`python3` en Mac, `py -3` en Windows), Google Chrome (o Edge / Chromium); Pillow opcional.
 
 ## 1 · Leer la marca y el contexto
@@ -47,7 +48,8 @@ Decidir en 2–3 líneas (para vos, y contarlo en una línea al mostrar el resul
 
 | Si la idea es… | Placa |
 |---|---|
-| gancho / promesa | `portada` (con `icono` o el aro decorativo; foto solo si la dieron) |
+| gancho / promesa | `portada` (con foto si hay una buena; si no, `icono` o el aro decorativo) |
+| una escena o situación que se ve (el paciente, el síntoma, el lugar) | `foto` |
 | una cifra, porcentaje, tiempo, plata | `dato` |
 | errores, señales, beneficios, requisitos | `lista` (íconos por ítem, `x` o `check`) |
 | mito vs. realidad, antes/después, lo que hacen vs. lo que conviene | `comparacion` |
@@ -68,8 +70,25 @@ Decidir en 2–3 líneas (para vos, y contarlo en una línea al mostrar el resul
    escala de dolor, gráfico simple, diagrama de flujo, «calendario» de la semana, un número tachado y otro encima…).
    Usar las variables y clases de la marca (ver `reference/placas.md`) para que no se salga del sistema. Al menos una
    placa `libre` o un recurso a medida por carrusel cuando el guion no tiene estructura obvia.
-6. **Imágenes generadas** (opcional): solo si la sesión tiene una herramienta de generación de imágenes y el usuario
-   está de acuerdo (puede gastar créditos). Nunca son necesarias para terminar el carrusel.
+6. **Foto que ilustra el tema** (por defecto 1, máximo 2 por carrusel). Buscar en Pixabay, en inglés y con 2–4
+   palabras concretas de lo que se VE (no del concepto): `lower back pain`, `dentist patient smiling`,
+   `woman checking phone night`.
+   ```bash
+   python3 ~/.claude/skills/carrusel/scripts/fotos.py "<carpeta>" "<búsqueda>" [-n 8] [--horizontal] [--pagina 2]
+   ```
+   Baja `fotos/c01.jpg…` y la hoja `fotos/candidatas.jpg`. **Mirar la hoja con Read y elegir con criterio de
+   director de arte**; si ninguna sirve, otra búsqueda (hasta 3) y si sigue sin haber, seguir sin foto y avisarlo.
+   Sirve una foto que:
+   - se entiende de un vistazo y muestra el tema (el cuerpo, la situación, el objeto), no algo genérico;
+   - parece real y actual: luz natural, nada de sonrisas forzadas, poses de banco de imágenes ni montajes;
+   - deja lugar para el texto (zona lisa o que tolere el degradé) y no trae texto, logos ni marcas de agua;
+   - no muestra sangre, heridas, agujas en primer plano ni cuerpos expuestos de más;
+   - **no se confunde con el profesional de la cuenta**: evitar un médico de frente como protagonista (parecería que es
+     el cliente); mejor manos, pacientes, objetos, espacios o planos de espalda.
+   Dónde va: en la `portada` (`foto`, si hay una muy buena: es la que más suma) o en una placa `foto` en el medio del
+   desarrollo (`modo: "sangre"` a pantalla completa o `modo: "marco"` enmarcada con texto abajo). Ajustar el encuadre
+   con `foto_pos`. Pixabay permite uso comercial sin atribución; los datos quedan en `fotos/candidatas.json`.
+   Imágenes generadas con IA: solo si el usuario lo pide (gastan créditos).
 
 ## 4 · Escribir `carrusel.json`
 Carpeta de salida: `Contenido/Carruseles/AAAA-MM-DD <tema corto>/` si existe `Contenido/` en la carpeta de trabajo; si
@@ -97,7 +116,8 @@ no un trámite:
 - cortes de línea feos (una palabra sola al final del título: reescribir o forzar `\n`);
 - cada placa tiene un ancla visual (título grande, número, ícono o diagrama); si una se ve vacía o igual a la anterior,
   cambiarle el tipo, el fondo o sumarle un recurso;
-- contraste suficiente y fondos alternados.
+- contraste suficiente y fondos alternados;
+- la foto se ve nítida, el encuadre no corta lo importante (ajustar `foto_pos`) y el texto encima se lee bien.
 Rehacer solo algunas: `--solo 3,5`.
 
 ## 6 · Texto de la publicación
@@ -116,4 +136,5 @@ del guion tal cual y, si suma, una línea final para guardar o compartir. ≤ 22
 - «No existe la marca»: el error lista las disponibles; si falta, crearla con `/marca` o sincronizar las marcas
   (repo `marcas-clientes` en `~/.config/motion/brands`).
 - «No existe el ícono»: buscar el nombre con `scripts/iconos.py`.
+- «Falta la clave de Pixabay»: va en `~/.config/pixabay/key` (o variable `PIXABAY_KEY`). Sin clave, seguir sin foto.
 - Tipografía genérica en el render: revisar que existan los archivos de `fonts` que nombra `brand.json`.

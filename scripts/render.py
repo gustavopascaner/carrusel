@@ -354,9 +354,31 @@ def L_libre(p, s, C):
     return f'{css}<div class="s" style="{p.get("estilo", "justify-content:center")}">{body}</div>'
 
 
+def L_foto(p, s, C):
+    """Foto que ilustra el tema. modo "sangre" (por defecto): a pantalla completa con degradé y texto abajo.
+    modo "marco": foto en tarjeta arriba y texto abajo sobre el fondo de la marca."""
+    pos = p.get("foto_pos", "50% 40%")
+    kick = f'<div class="kick" style="color:{C["pop"]};margin-bottom:18px" {fs(24)}>{md(p["kicker"])}</div>' if p.get("kicker") else ""
+    titulo = f'<div class="h" {fs(p.get("tam", 96))}>{md(p["titulo"])}</div>' if p.get("titulo") else ""
+    remate = f'<div class="si" {fs(p.get("tam_remate", 64))} style="color:{C["pop"]};line-height:1.05;margin-top:14px">{md(p["remate"])}</div>' if p.get("remate") else ""
+    if p.get("modo") == "marco":
+        alto = p.get("alto_foto", 700)
+        return f"""
+<div class="s" style="justify-content:flex-start;padding-top:120px">
+  <div class="card" style="height:{alto}px;overflow:hidden;margin-bottom:56px;box-shadow:0 18px 0 rgba(0,0,0,.10)">
+    <img src="{p['_foto']}" style="width:100%;height:100%;object-fit:cover;object-position:{pos};display:block"></div>
+  {kick}{titulo}{remate}
+</div>"""
+    ov = C["photo_bg"]
+    return f"""
+<img class="foto" src="{p['_foto']}" style="object-position:{pos}">
+<div style="position:absolute;inset:0;background:linear-gradient(180deg,{ov}55 0%,{ov}00 18%,{ov}00 40%,{ov}d0 66%,{ov} 84%)"></div>
+<div class="s" style="justify-content:flex-end;padding-bottom:150px">{kick}{titulo}{remate}</div>"""
+
+
 LAYOUTS = {"portada": L_portada, "lista": L_lista, "frase": L_frase, "pregunta": L_pregunta, "metodo": L_metodo,
            "bloques": L_bloques, "pasos": L_pasos, "cierre": L_cierre, "cta": L_cta,
-           "dato": L_dato, "comparacion": L_comparacion, "grilla": L_grilla, "libre": L_libre}
+           "dato": L_dato, "comparacion": L_comparacion, "grilla": L_grilla, "libre": L_libre, "foto": L_foto}
 ROTA = ["light", "accent", "dark", "light", "accent_dark", "dark", "accent", "light"]
 
 
@@ -444,7 +466,7 @@ b{{font-weight:700}}
 
 
 def render_slide(i, total, p, cfg, P, css, out_html, H, brand_dir):
-    fondo = p.get("fondo") or ("foto" if p.get("tipo") == "portada" and p.get("foto") else ROTA[(i - 1) % len(ROTA)])
+    fondo = p.get("fondo") or ("foto" if p.get("foto") and (p.get("tipo") == "portada" or (p.get("tipo") == "foto" and p.get("modo") != "marco")) else ROTA[(i - 1) % len(ROTA)])
     if p.get("tipo") == "cta" and not p.get("fondo"):
         fondo = "accent2"
     C = theme_colors(P, fondo)
@@ -458,6 +480,8 @@ def render_slide(i, total, p, cfg, P, css, out_html, H, brand_dir):
             dst = out_html / f"foto_{i:02d}{src.suffix.lower()}"
             shutil.copy2(src, dst)
             p["_foto"] = dst.name
+    if p.get("tipo") == "foto" and not p.get("_foto"):
+        sys.exit(f"Placa {i}: la placa foto necesita «foto»")
     body = LAYOUTS[p["tipo"]](p, cfg, C)
     if p.get("icono_fondo"):
         body = (f'<div style="position:absolute;right:-120px;bottom:-60px;color:{C["pop"]};opacity:.13;line-height:0">'
