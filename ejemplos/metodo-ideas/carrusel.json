@@ -1,0 +1,138 @@
+{
+  "marca": "gus-pascaner",
+  "firma": "Gus Pascaner · Mister Robot",
+  "cuenta": "@gus.pascaner",
+  "formato": "4:5",
+  "placas": [
+    {
+      "tipo": "portada",
+      "etiqueta": "Marketing médico",
+      "titulo": "Si fuera médico\ny empezara mi\nmarketing de cero,",
+      "remate": "esto no lo haría.",
+      "fondo": "dark"
+    },
+    {
+      "tipo": "lista",
+      "fondo": "light",
+      "kicker": "Lo que no haría",
+      "titulo": "4 errores",
+      "remate": "que veo siempre",
+      "icono": "x",
+      "items": [
+        "Contratar un **community manager** solo para publicar 3 veces por semana.",
+        "Intentar ser **influencer** y juntar cientos de miles de seguidores.",
+        "Hacer **bailes, tendencias** o contenido que no me represente.",
+        "Medir mi marketing por **seguidores, vistas o likes**."
+      ]
+    },
+    {
+      "tipo": "frase",
+      "fondo": "accent",
+      "intro": "Después de trabajar con **más de 450 profesionales de la salud** entendí algo:",
+      "titulo": "Los buenos médicos no tienen un problema de ~~reputación~~.",
+      "remate": "Tienen un problema de ==previsibilidad.=="
+    },
+    {
+      "tipo": "pregunta",
+      "fondo": "dark",
+      "titulo": "¿Cuántos pacientes nuevos van a llegar {el mes que viene?}",
+      "texto": "Son buenos, se siguen formando, tienen pacientes y hasta facturan bien… **pero no tienen idea.**",
+      "kicker": "Porque dependen de",
+      "chips": [
+        "Boca a boca",
+        "Derivaciones",
+        "Obras sociales"
+      ]
+    },
+    {
+      "tipo": "metodo",
+      "fondo": "light",
+      "kicker": "Lo que sí haría",
+      "titulo": "Implementar el\n_Método_ I.D.E.A.S.",
+      "letras": [
+        {
+          "l": "I",
+          "w": "Investigación"
+        },
+        {
+          "l": "D",
+          "w": "Diseño"
+        },
+        {
+          "l": "E",
+          "w": "Estadísticas"
+        },
+        {
+          "l": "A",
+          "w": "Anuncios"
+        },
+        {
+          "l": "S",
+          "w": "Sistemas"
+        }
+      ],
+      "texto": "El sistema para transformar tu experiencia en un **mecanismo previsible para atraer pacientes.**",
+      "remate": "Y no empieza haciendo contenido."
+    },
+    {
+      "tipo": "bloques",
+      "fondo": "accent",
+      "bloques": [
+        {
+          "letra": "I",
+          "titulo": "Investigación",
+          "texto": "Conocer a tu paciente ideal: qué problema quiere resolver, qué le preocupa y qué tiene en cuenta para elegir profesional."
+        },
+        {
+          "letra": "D",
+          "titulo": "Diseño",
+          "texto": "Una propuesta y un mensaje que le muestren rápido **por qué elegirte a vos** y no seguir buscando en Instagram o Google."
+        }
+      ]
+    },
+    {
+      "tipo": "bloques",
+      "fondo": "light",
+      "bloques": [
+        {
+          "letra": "E",
+          "titulo": "Estadísticas",
+          "texto": "Tu marketing no puede depender de lo que a vos, a tu community o a una agencia **les parece lindo**. Necesitás datos para entender tu crecimiento."
+        },
+        {
+          "letra": "A",
+          "titulo": "Anuncios",
+          "texto": "Dejás de esperar que el algoritmo tenga ganas de mostrar tu mensaje. **Y acelerás.**"
+        }
+      ]
+    },
+    {
+      "tipo": "pasos",
+      "fondo": "dark",
+      "letra_fondo": "S",
+      "kicker": "Y finalmente",
+      "titulo": "Sistemas",
+      "texto": "Sistematizar la adquisición de pacientes en un proceso que puedas:",
+      "pasos": [
+        "Medir",
+        "Repetir",
+        "Mejorar"
+      ]
+    },
+    {
+      "tipo": "cierre",
+      "fondo": "accent_dark",
+      "etiqueta": "El objetivo",
+      "titulo": "Que dejes de preguntarte de dónde van a salir {los pacientes del mes que viene.}",
+      "remate": "Un mecanismo previsible, que además entiendas lo suficiente para seguir haciéndolo crecer."
+    },
+    {
+      "tipo": "cta",
+      "intro": "¿Sos profesional de la salud, tenés experiencia y pacientes, pero todavía dependés del boca a boca?",
+      "accion": "Comentá",
+      "palabra": "Clase",
+      "texto": "y te mando por privado una clase para **conseguir pacientes que paguen más.**",
+      "firma": "O escribime y vemos tu caso."
+    }
+  ]
+}

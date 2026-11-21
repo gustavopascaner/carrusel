@@ -1,0 +1,109 @@
+{
+  "marca": "gus-pascaner",
+  "cuenta": "@tu.cuenta",
+  "placas": [
+    {
+      "tipo": "portada",
+      "fondo": "accent",
+      "icono": "activity",
+      "etiqueta": "Kinesiología",
+      "titulo": "Tu dolor de espalda no se va con reposo",
+      "remate": "(y te explico por qué)"
+    },
+    {
+      "tipo": "dato",
+      "fondo": "light",
+      "kicker": "Dato de ejemplo",
+      "numero": "3",
+      "unidad": "pasos",
+      "texto": "para volver a moverte sin dolor. (En un carrusel real: solo cifras del guion, con su fuente.)"
+    },
+    {
+      "tipo": "comparacion",
+      "fondo": "dark",
+      "kicker": "Lo que se cree vs. lo que funciona",
+      "titulo": "Mito y realidad",
+      "izq": {
+        "titulo": "Mito",
+        "icono": "bed",
+        "items": [
+          "Quedarse en cama hasta que pase",
+          "Evitar todo movimiento",
+          "Esperar a que se vaya solo"
+        ]
+      },
+      "der": {
+        "titulo": "Realidad",
+        "icono": "footprints",
+        "items": [
+          "Moverse con guía profesional",
+          "Ejercicio progresivo",
+          "Corregir postura y hábitos"
+        ]
+      }
+    },
+    {
+      "tipo": "grilla",
+      "fondo": "light",
+      "kicker": "Qué hacemos en la primera consulta",
+      "titulo": "4 pasos",
+      "celdas": [
+        {
+          "icono": "clipboard-list",
+          "titulo": "Evaluar",
+          "texto": "Historia y examen físico"
+        },
+        {
+          "icono": "scan-search",
+          "titulo": "Detectar",
+          "texto": "El origen del dolor"
+        },
+        {
+          "icono": "dumbbell",
+          "titulo": "Tratar",
+          "texto": "Ejercicio y terapia manual"
+        },
+        {
+          "icono": "calendar-check",
+          "titulo": "Seguir",
+          "texto": "Plan semanal medible"
+        }
+      ]
+    },
+    {
+      "tipo": "lista",
+      "fondo": "accent_dark",
+      "kicker": "Señales de alarma",
+      "titulo": "Consultá ya si",
+      "items": [
+        {
+          "icono": "zap",
+          "texto": "El dolor baja por la pierna"
+        },
+        {
+          "icono": "moon",
+          "texto": "Te despierta a la noche"
+        },
+        {
+          "icono": "thermometer",
+          "texto": "Viene con fiebre"
+        }
+      ]
+    },
+    {
+      "tipo": "libre",
+      "fondo": "accent2",
+      "html": "<div class='kick' data-fs='24'>Recordá</div><div class='h' data-fs='150' style='margin-top:20px'>Moverse<br><span class='si'>es parte</span><br>del tratamiento</div><div style='display:flex;gap:30px;margin-top:70px;color:var(--fg)'>[[footprints|120]][[bike|120]][[heart-pulse|120]]</div>"
+    },
+    {
+      "tipo": "cta",
+      "fondo": "dark",
+      "intro": "¿Hace semanas que te duele?",
+      "accion": "Escribinos",
+      "palabra": "Turno",
+      "texto": "y te damos un turno de evaluación esta semana.",
+      "firma": "Consultorio de ejemplo · Kinesiología"
+    }
+  ],
+  "firma": "Consultorio de ejemplo"
+}
